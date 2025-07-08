@@ -1,0 +1,16 @@
+services:
+  images:
+    build: ./services/dodgeterest
+    restart: unless-stopped
+    ports:
+      - "5026:5026"
+    environment:
+      - SERVER_PORT=5026
+  api-gatway:
+    build: ./api-gateway
+    restart: unless-stopped
+    ports:
+      - "5000:5000"
+    environment:
+      - FILEUPLOADER_SERVICE_URL=http://images:5026
+      - PORT=5000
