@@ -5,7 +5,7 @@ import { $host } from '../index';
 export const getImageList = async () => {
     try
     {
-        const { data } = await $host.get('/api/imgs/doggos');
+        const { data } = await $host.get('/images/api/imgs/doggos');
 
 
         if (data?.error)

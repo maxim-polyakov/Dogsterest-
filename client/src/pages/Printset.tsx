@@ -3,12 +3,7 @@ import './Printset.css';
 import { getImageList } from '../http/images/Image_API'
 import React from 'react';
 
-export const  Gallery = () => {
-    let files;
-
-    function sleep(ms) {
-        return new Promise(resolve => setTimeout(resolve, ms));
-    }
+export const  Gallery = observer(() => {
 
     async function getfiles() {
         const filelist = await getImageList();
@@ -16,7 +11,8 @@ export const  Gallery = () => {
 
         for (let i = 0; i < filelist.length; i++) {
             const img = document.createElement("img");
-            img.src = `${process.env.REACT_APP_API_URL}/${filelist[i]}`
+            console.log(`${process.env.REACT_APP_API_URL}/images/${filelist[i]}`)
+            img.src = `${process.env.REACT_APP_API_URL}/images/${filelist[i]}`
             img.width = 300;
             img.height = 300;
             container.appendChild(img);
@@ -45,4 +41,4 @@ export const  Gallery = () => {
             </div>
         </div>
     );
-};
+});
