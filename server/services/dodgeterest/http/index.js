@@ -2,6 +2,6 @@ import axios from 'axios';
 
 
 export const $host = axios.create({
-    baseURL: 'https://random.dog'
+    baseURL: 'http://random.dog'
     }
 );

@@ -7,6 +7,6 @@ const imageRouter = new express.Router();
 //  Маршрутизатор отвечающий за обработку запросов связанных с авторизацией.
 imageRouter.get('/doggos', imageController.img);
 imageRouter.get('/apidoggos', imageController.apifiles);
-imageRouter.post('/image', imageController.apiimgs);
+imageRouter.get('/image/:filename', imageController.apiimgs);
 
 export default imageRouter;

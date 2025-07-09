@@ -32,10 +32,9 @@ class ImgController {
 
     async apiimgs(req, res, next) {
         try {
-            const { filename } = req.body;
+            const filename = req.params.filename;
 
             let file = await getImg(filename)
-
 
             return res.json(file);
 

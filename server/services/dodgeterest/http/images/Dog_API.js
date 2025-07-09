@@ -1,13 +1,12 @@
 import { $host } from '../index.js';
-import {response} from "express";
 
 
 export const getFiles = async () => {
     try
     {
-        const { data } = await $host.get('/doggos');
+        const response = await fetch('https://random.dog/doggos');
 
-        console.log(data);
+        const data = await response.json()
 
         if (data?.error)
             throw new Error(data.error);
@@ -27,15 +26,19 @@ export const getFiles = async () => {
 export const getImg = async (filename) => {
     try
     {
-        const { data } = await $host.get('/' + filename, { responseType: 'blob' });
+        const response = await fetch(`https://random.dog/${filename}` );
 
-        const imageBlob = new Blob([data]);
-        const imageUrl = URL.createObjectURL(imageBlob);
-
-
+        const data = await response.blob();
+        const buffer = await data.arrayBuffer();
 
 
-        return imageUrl;
+
+        const encoded = Buffer.from(buffer).toString('base64');
+
+
+
+
+        return `data:${data.type};base64,${encoded}`;
     }catch (error)
     {
         console.log(error)
